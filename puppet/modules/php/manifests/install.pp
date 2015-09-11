@@ -38,6 +38,7 @@ class php::install{
         'make',
         'dstat',
         'emacs',
+        'telnet',
         'tree',
         'sysstat',
         'perf',
