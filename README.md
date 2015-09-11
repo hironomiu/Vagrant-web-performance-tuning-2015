@@ -1,4 +1,4 @@
-Sunrise2014用環境
+Vagrant-web-performance-tuning-2015用環境
 ===================================
 
 注意：仮想環境のメモリは768M以上で設定
@@ -10,17 +10,17 @@ Shell
 ## Set Up
 ### git clone
 ```
-$ git clone git@github.com:VG-Tech-Dojo/VagrantSunrise2014.git
+$ git clone git@github.com:hironomiu/Vagrant-web-performance-tuning-2015.gite
 ```
 ### vagrant up
 ```
-$ cd VagrantSunrise2014 
+$ cd Vagrant-web-performance-tuning-2015 
 $ vagrant up  
 ```
 ## Login
 ### demouser
 ```
-$ ssh demouser@192.168.56.130
+$ ssh demouser@192.168.56.7
 $ su -
  pass vagrant
 ```
