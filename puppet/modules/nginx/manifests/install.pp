@@ -1,6 +1,6 @@
 class nginx::install{
-    include demouser::config
-    Class['demouser::config'] -> Class['nginx::install']
+    include php::config
+    Class['php::config'] -> Class['nginx::install']
     yumrepo { 'nginx':
         descr => 'nginx yum repo',
         baseurl => 'http://nginx.org/packages/centos/6/$basearch/',

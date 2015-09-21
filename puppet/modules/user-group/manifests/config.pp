@@ -1,6 +1,11 @@
-class demouser::config{
-    include demogroup::config
-    Class['demogroup::config'] ~> Class['demouser::config']
+class user-group::config{
+    include php::install
+    Class['php::install'] -> Class['user-group::config']
+
+    group { 'demogroup':
+        ensure => present,
+        gid => 505,
+    }
 
     user { 'demouser':
         ensure => present,
@@ -9,6 +14,7 @@ class demouser::config{
         home => '/home/demouser',
         managehome => true,
         shell => '/bin/bash',
+        require => Group["demogroup"]
     }
 
     file { '/home/demouser/.ssh':

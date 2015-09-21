@@ -7,4 +7,8 @@ class php::config {
         owner => 'root', group => 'root',
         content => template('php/10-opcache.ini'),
     }
+    file { '/etc/httpd/conf/httpd.conf':
+        owner => 'root', group => 'root',
+        content => template('php/httpd.conf'),
+    }
 }

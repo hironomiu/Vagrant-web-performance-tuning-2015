@@ -5,9 +5,7 @@ class app {
     include app::mongodb
     include app::db-demouser
     include app::php
-    include app::demogroup
-    include app::demouser
-    include app::httpd
+    include app::user-group
     include app::nginx
     include app::memcached
     include app::sshd

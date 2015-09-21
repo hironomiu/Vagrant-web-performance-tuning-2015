@@ -1,2 +1,0 @@
-class demouser::install{
-}
