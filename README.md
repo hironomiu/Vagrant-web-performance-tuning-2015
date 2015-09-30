@@ -46,4 +46,5 @@ port22,80 allow
 ### httpd
 自動起動
 /etc/httpd/conf/httpd.conf
-
+### varnishd
+80にて受付
