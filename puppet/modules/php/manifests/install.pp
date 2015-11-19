@@ -1,9 +1,9 @@
 class php::install{
-    exec { "nodejs npm httpd" :
+    exec { "nodejs npm" :
         user => 'root',
         cwd => '/root',
         path => ['/usr/bin','/bin'],
-        command => 'yum -y install nodejs npm --disablerepo=scl',
+        command => 'yum -y install nodejs npm httpd --disablerepo=scl',
         timeout => 999,
     }
 
