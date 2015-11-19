@@ -22,7 +22,7 @@ class php::install{
         user => 'root',
         cwd => '/root',
         path => ['/usr/bin','/bin'],
-        command => 'yum -y --disablerepo=base,updates install php-cli php-common php-devel php-pdo php-xml php-mbstring php-pecl-xdebug php-fpm --enablerepo=remi-php56',
+        command => 'yum -y --disablerepo=base,updates install php-cli php-opcache php-common php-devel php-pdo php-xml php-mbstring php-pecl-xdebug php-fpm --enablerepo=remi-php56',
         timeout => 999,
         require => Exec['php56'],
     }
