@@ -5,6 +5,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "puppetlabs/centos-6.6-64-puppet"
   config.vm.hostname = "sunrise2015.local"
   config.vm.network :private_network, ip: "192.168.56.7" 
+  config.vm.box_version = " 1.0.1 "
 
   config.vm.provider :virtualbox do |vb|
     vb.name = "Sunrise2015"
@@ -12,7 +13,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :puppet, :options => '--modulepath="/vagrant/puppet/modules":"/vagrant/puppet/roles"' do |puppet|
-     puppet.manifests_path = "./puppet/manifests"
+     puppet.manifests_path = "puppet/manifests"
      puppet.manifest_file  = "app.pp"
   end
 

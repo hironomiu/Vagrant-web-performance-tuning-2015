@@ -1,25 +1,10 @@
 class php::install{
-    yumrepo { 'CentALT':
-        descr => 'CentALT',
-        baseurl => 'http://centos.alt.ru/repository/centos/6/$basearch/',
-        enabled    => 0,
-        gpgcheck   => 0,
-    }
-
-    package{
-        'httpd':
-        ensure => installed,
-        install_options => ['--enablerepo=CentALT'],
-        require => Yumrepo['CentALT'],
-    }
-
     yumrepo { 'php-epel':
         descr => 'epel repo',
         mirrorlist => 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=$basearch',
         enabled    => 1,
         gpgcheck   => 1,
         gpgkey     => 'https://fedoraproject.org/static/0608B895.txt',
-        require => Package['httpd'],
     }
 
     yumrepo { 'php-remi':
@@ -49,6 +34,7 @@ class php::install{
         'php-mcrypt',
         'libmcrypt',
         'siege',
+        'httpd',
         ]:
         provider => 'yum',
         ensure => installed,

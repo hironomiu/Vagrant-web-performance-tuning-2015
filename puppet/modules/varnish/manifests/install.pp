@@ -1,7 +1,7 @@
 class varnish::install{
     yumrepo { 'varnish':
         descr => 'varnish repo',
-        baseurl => 'https://repo.varnish-cache.org/redhat/varnish-4.0/el6/$basearch',
+        baseurl => 'https://repo.varnish-cache.org/redhat/varnish-3.0/el6/$basearch',
         enabled    => 1,
         gpgcheck   => 0,
         gpgkey     => 'https://repo.varnish-cache.org/GPG-key.txt',
