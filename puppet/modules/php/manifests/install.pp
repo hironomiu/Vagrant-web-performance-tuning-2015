@@ -12,22 +12,14 @@ class php::install{
         user => 'root',
         cwd => '/root',
         path => ['/usr/bin','/bin'],
-        command => 'yum -y install php56 --enablerepo=remi-php56',
+        command => 'yum -y --disablerepo=* install php56 php-cli php-common php-devel php-pdo php-xml php-mbstring php-pecl-xdebug php-fpm --enablerepo=remi-php56,epel',
         timeout => 999,
         require => Exec['nodejs npm'],
     }
 
     package{ 
         [
-        'php-cli',
-        'php-common',
-        'php-devel',
-        'php-pdo',
-        'php-xml',
-        'php-mbstring',
         'php-pecl-memcached',
-        'php-pecl-xdebug',
-        'php-fpm',
         'php-mcrypt',
         'libmcrypt',
         'siege',
