@@ -22,7 +22,7 @@ class php::install{
         user => 'root',
         cwd => '/root',
         path => ['/usr/bin','/bin'],
-        command => 'yum -y --enablerepo=remi-php56 install php-xml php-pecl-xdebug --enablerepo=remi-php56 --disablerepo=base,updates',
+        command => 'yum -y --disablerepo=base,updates,epel,varnish-epel install php-mcrypt --enablerepo=remi-php56',
         timeout => 999,
         require => Exec['php56'],
     }
@@ -32,7 +32,7 @@ class php::install{
         user => 'root',
         cwd => '/root',
         path => ['/usr/bin','/bin'],
-        command => 'yum -y --disablerepo=base,updates,epel,varnish-epel install php-mcrypt --enablerepo=remi-php56',
+        command => 'yum -y --enablerepo=remi-php56 install php-xml php-pecl-xdebug --enablerepo=remi-php56 --disablerepo=base,updates',
         timeout => 999,
         require => Exec['php56-2'],
     }
