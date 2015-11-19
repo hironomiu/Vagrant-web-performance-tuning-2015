@@ -1,5 +1,5 @@
 class php::install{
-    exec { "nodejs npm" :
+    exec { "nodejs npm httpd" :
         user => 'root',
         cwd => '/root',
         path => ['/usr/bin','/bin'],
@@ -12,7 +12,7 @@ class php::install{
         user => 'root',
         cwd => '/root',
         path => ['/usr/bin','/bin'],
-        command => 'yum -y install php56 --enablerepo=remi-php56',
+        command => 'yum -y --enablerepo=remi-php56 install php php-devel php-opcache php-cli php-common php-pdo php-fpm php-mbstring --disablerepo=updates,base',
         timeout => 999,
         require => Exec['nodejs npm'],
     }
@@ -22,7 +22,7 @@ class php::install{
         user => 'root',
         cwd => '/root',
         path => ['/usr/bin','/bin'],
-        command => 'yum -y --disablerepo=base,updates install php-cli php-common php-devel php-pdo php-xml php-mbstring php-pecl-xdebug php-fpm --enablerepo=remi-php56',
+        command => 'yum -y --disablerepo=base,updates install php-xml php-pecl-xdebug --enablerepo=remi-php56',
         timeout => 999,
         require => Exec['php56'],
     }
@@ -50,7 +50,6 @@ class php::install{
     package{ 
         [
         'siege',
-        'httpd',
         ]:
         provider => 'yum',
         ensure => installed,
