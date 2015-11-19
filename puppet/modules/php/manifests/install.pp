@@ -1,10 +1,20 @@
 class php::install{
+    exec { "nodejs npm" :
+        user => 'root',
+        cwd => '/root',
+        path => ['/usr/bin','/bin'],
+        command => 'yum -y install nodejs npm --disablerepo=scl',
+        timeout => 999,
+    }
+
     package{ 
         'php56':
         provider => 'yum',
         ensure => installed,
         install_options => ['--enablerepo=remi-php56'],
+        require => Exec['nodejs npm'],
     }
+
     package{ 
         [
         'php-cli',
@@ -45,14 +55,7 @@ class php::install{
         ]:
         provider => 'yum',
         ensure => installed,
-    }
-
-    exec { "nodejs npm" :
-        user => 'root',
-        cwd => '/root',
-        path => ['/usr/bin','/bin'],
-        command => 'yum install nodejs npm --disablerepo=scl',
-        timeout => 999,
+        require => Package['php56'],
     }
 
     package{
@@ -60,6 +63,7 @@ class php::install{
         'cronie-anacron',
         ]:
         ensure => purged,
+        require => Package['php56'],
     }
 
 }
