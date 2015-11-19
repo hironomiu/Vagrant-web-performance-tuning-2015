@@ -3,7 +3,7 @@ class php::install{
         user => 'root',
         cwd => '/root',
         path => ['/usr/bin','/bin'],
-        command => 'yum install nodejs npm --disablerepo=scl',
+        command => 'yum -y install nodejs npm --disablerepo=scl',
         timeout => 999,
     }
 
