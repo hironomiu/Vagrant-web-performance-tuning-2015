@@ -12,7 +12,7 @@ class php::install{
         user => 'root',
         cwd => '/root',
         path => ['/usr/bin','/bin'],
-        command => 'yum -y --disablerepo=base,updates install php56 --enablerepo=remi-php56',
+        command => 'yum -y install php56 --enablerepo=remi-php56',
         timeout => 999,
         require => Exec['nodejs npm'],
     }
