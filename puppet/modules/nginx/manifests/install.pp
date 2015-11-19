@@ -1,5 +1,4 @@
 class nginx::install{
-    include php::config
     Class['php::config'] -> Class['nginx::install']
     yumrepo { 'nginx':
         descr => 'nginx yum repo',
