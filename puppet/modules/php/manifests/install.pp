@@ -42,12 +42,17 @@ class php::install{
         'sysstat',
         'perf',
         'cronie-noanacron',
-        'nodejs',
-        'npm',
         ]:
         provider => 'yum',
-        install_options => ['--disablerepo=scl'],
         ensure => installed,
+    }
+
+    exec { "nodejs npm" :
+        user => 'root',
+        cwd => '/root',
+        path => ['/usr/bin','/bin'],
+        command => 'yum install nodejs npm --disablerepo=scl',
+        timeout => 999,
     }
 
     package{
