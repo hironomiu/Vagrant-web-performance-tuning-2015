@@ -12,9 +12,19 @@ class php::install{
         user => 'root',
         cwd => '/root',
         path => ['/usr/bin','/bin'],
-        command => 'yum -y --disablerepo=* install php56 php-cli php-common php-devel php-pdo php-xml php-mbstring php-pecl-xdebug php-fpm --enablerepo=remi-php56,epel',
+        command => 'yum -y --disablerepo=base,updates install php56 --enablerepo=remi-php56',
         timeout => 999,
         require => Exec['nodejs npm'],
+    }
+
+    exec{ 
+        'php56-2':
+        user => 'root',
+        cwd => '/root',
+        path => ['/usr/bin','/bin'],
+        command => 'yum -y --disablerepo=base,updates install php-cli php-common php-devel php-pdo php-xml php-mbstring php-pecl-xdebug php-fpm --enablerepo=remi-php56',
+        timeout => 999,
+        require => Exec['php56'],
     }
 
     package{ 
@@ -28,7 +38,7 @@ class php::install{
         provider => 'yum',
         ensure => installed,
         install_options => ['--enablerepo=remi-php56,epel'],
-        require => Exec['php56'],
+        require => Exec['php56-2'],
     }
 
     package{
@@ -49,7 +59,7 @@ class php::install{
         ]:
         provider => 'yum',
         ensure => installed,
-        require => Exec['php56'],
+        require => Exec['php56-2'],
     }
 
     package{
