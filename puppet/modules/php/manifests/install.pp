@@ -7,11 +7,13 @@ class php::install{
         timeout => 999,
     }
 
-    package{ 
+    exec{ 
         'php56':
-        provider => 'yum',
-        ensure => installed,
-        install_options => ['--enablerepo=remi-php56'],
+        user => 'root',
+        cwd => '/root',
+        path => ['/usr/bin','/bin'],
+        command => 'yum -y install php56 --enablerepo=remi-php56',
+        timeout => 999,
         require => Exec['nodejs npm'],
     }
 
@@ -34,7 +36,7 @@ class php::install{
         provider => 'yum',
         ensure => installed,
         install_options => ['--enablerepo=remi-php56,epel'],
-        require => Package['php56'],
+        require => Exec['php56'],
     }
 
     package{
@@ -55,7 +57,7 @@ class php::install{
         ]:
         provider => 'yum',
         ensure => installed,
-        require => Package['php56'],
+        require => Exec['php56'],
     }
 
     package{
@@ -63,7 +65,7 @@ class php::install{
         'cronie-anacron',
         ]:
         ensure => purged,
-        require => Package['php56'],
+        require => Exec['php56'],
     }
 
 }
