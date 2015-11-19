@@ -42,7 +42,7 @@ class php::install{
         user => 'root',
         cwd => '/root',
         path => ['/usr/bin','/bin'],
-        command => 'yum -y install php-pecl-igbinary php-pecl-memcached --enablerepo=remi-php56',
+        command => 'yum -y install php-pecl-igbinary php-pecl-memcached php-mysqlnd --enablerepo=remi-php56',
         timeout => 999,
         require => Exec['php56-3'],
     }
