@@ -2,6 +2,6 @@ class nginx::install{
     package{
         'nginx':
         ensure => installed,
-        require => Yumrepo['nginx'],
+        install_options => ['--enablerepo=remi'],
     }
 }
