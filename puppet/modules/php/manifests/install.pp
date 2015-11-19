@@ -42,9 +42,11 @@ class php::install{
         'sysstat',
         'perf',
         'cronie-noanacron',
+        'nodejs',
         'npm',
         ]:
         provider => 'yum',
+        install_options => ['--disablerepo=scl'],
         ensure => installed,
     }
 
