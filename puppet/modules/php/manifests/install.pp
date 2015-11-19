@@ -1,22 +1,4 @@
 class php::install{
-    yumrepo { 'php-epel':
-        descr => 'epel repo',
-        mirrorlist => 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=$basearch',
-        enabled    => 1,
-        gpgcheck   => 1,
-        gpgkey     => 'https://fedoraproject.org/static/0608B895.txt',
-    }
-
-    yumrepo { 'php-remi':
-        descr => 'remi repo',
-        mirrorlist     => 'http://rpms.famillecollet.com/enterprise/$releasever/php56/mirror',
-        enabled        => 0,
-        gpgcheck       => 1,
-        gpgkey     => 'http://rpms.famillecollet.com/RPM-GPG-KEY-remi',
-        priority       => 1,
-        require => Yumrepo['php-epel'],
-    }
-
     package{ 
         [
         'php',
@@ -38,8 +20,7 @@ class php::install{
         ]:
         provider => 'yum',
         ensure => installed,
-        install_options => ['--enablerepo=php-epel,php-remi'],
-        require => Yumrepo['php-remi']
+        install_options => ['--enablerepo=remi-php56,epel'],
     }
 
     package{
@@ -61,7 +42,6 @@ class php::install{
         ]:
         provider => 'yum',
         ensure => installed,
-        require => Yumrepo['php-remi']
     }
 
     package{
@@ -69,7 +49,6 @@ class php::install{
         'cronie-anacron',
         ]:
         ensure => purged,
-        require => Yumrepo['php-remi'],
     }
 
 }
