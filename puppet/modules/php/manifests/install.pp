@@ -27,11 +27,28 @@ class php::install{
         require => Exec['php56'],
     }
 
+    exec{ 
+        'php56-3':
+        user => 'root',
+        cwd => '/root',
+        path => ['/usr/bin','/bin'],
+        command => 'yum -y --disablerepo=base,updates,epel,varnish-epel install php-mcrypt --enablerepo=remi-php56',
+        timeout => 999,
+        require => Exec['php56-2'],
+    }
+
+    exec{ 
+        'php56-4':
+        user => 'root',
+        cwd => '/root',
+        path => ['/usr/bin','/bin'],
+        command => 'yum -y install php-pecl-igbinary php-pecl-memcached --enablerepo=remi-php56',
+        timeout => 999,
+        require => Exec['php56-2'],
+    }
+
     package{ 
         [
-        'php-pecl-memcached',
-        'php-mcrypt',
-        'libmcrypt',
         'siege',
         'httpd',
         ]:
